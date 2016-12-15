@@ -10,7 +10,7 @@
                 <field name="residual" position="after">
                         <field name="amount_paid" />
                 </field>
-		<field name="comments" position="after">
+		<field name="comment" position="after">
                         <field name="text_payments" />
 		</field>
             </field>
