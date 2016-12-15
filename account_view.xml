@@ -25,6 +25,7 @@
 			<field name="partner_id" />
 			<field name="journal_id" />
 			<field name="date_invoice" />
+			<field name="state" />
 			<field name="amount_total" />
 			<field name="residual" />
 			<field name="amount_paid" />
