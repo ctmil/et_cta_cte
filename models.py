@@ -15,9 +15,9 @@ class account_invoice(models.Model):
 		return_value = ''
 		for payment in self.payment_ids:
 			if self.type == 'out_invoice':
-				return_value = str(payment.date) + ' - ' + payment.journal_id.name + ' - $' + str(payment.credit) + '\n'
+				return_value = return_value + str(payment.date) + ' - ' + payment.journal_id.name + ' - $' + str(payment.credit) + '\n'
 			else:
-				return_value = str(payment.date) + ' - ' + payment.journal_id.name + ' - $' + str(payment.debit) + '\n'
+				return_value = return_value + str(payment.date) + ' - ' + payment.journal_id.name + ' - $' + str(payment.debit) + '\n'
 		self.text_payments = return_value
 
 	amount_paid = fields.Float(string='Monto Pagado',compute=_compute_amount_paid)
