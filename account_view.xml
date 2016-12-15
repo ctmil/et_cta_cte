@@ -16,5 +16,35 @@
             </field>
         </record>
 
+        <record id="cuenta_corriente_tree" model="ir.ui.view">
+            <field name="name">cuenta.corriente.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+		<tree string="Cuenta Corriente 2.0">
+			<field name="number" />
+			<field name="partner_id" />
+			<field name="journal_id" />
+			<field name="date_invoice" />
+			<field name="amount_total" />
+			<field name="residual" />
+			<field name="amount_paid" />
+			<field name="text_payments" />
+		</tree>
+            </field>
+        </record>
+
+        <record id="action_cuenta_corriente_tree" model="ir.actions.act_window">
+            <field name="name">Cuenta Corriente 2.0</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="cuenta_corriente_tree"/>
+        </record>
+
+	<menuitem name="Cuenta Corriente 2.0" id="menuitem_cuenta_corriente_2" parent="account.menu_finance_receivables" 
+            action="action_cuenta_corriente_tree" sequence="200"/>
+
+
     </data>
 </openerp>
