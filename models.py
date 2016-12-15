@@ -13,7 +13,6 @@ class account_invoice(models.Model):
 	@api.one
 	def _compute_text_payments(self):
 		return_value = ''
-		import pdb;pdb.set_trace()
 		for payment in self.payment_ids:
 			if self.type == 'out_invoice':
 				return_value = str(payment.date) + ' - ' + payment.journal_id.name + ' - $' + str(payment.credit) + '\n'
