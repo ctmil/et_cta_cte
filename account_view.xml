@@ -32,6 +32,19 @@
             </field>
         </record>
 
+        <record id="cuenta_corriente_search" model="ir.ui.view">
+            <field name="name">cuenta.corriente.tree.search</field>
+            <field name="model">partner.cta.cte</field>
+            <field name="arch" type="xml">
+		<search string="Cuenta Corriente 2.0">
+			<field name="partner_id" />
+			<field name="cliente_proveedor" />
+			<field name="tipo_doc" />
+			<field name="ref" />
+		</search>
+            </field>
+        </record>
+
         <record id="action_cuenta_corriente_tree" model="ir.actions.act_window">
             <field name="name">Cuenta Corriente 2.0</field>
             <field name="type">ir.actions.act_window</field>
@@ -39,6 +52,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="cuenta_corriente_tree"/>
+            <field name="search_id" ref="cuenta_corriente_search"/>
         </record>
 
 	<menuitem name="Cuenta Corriente 2.0" id="menuitem_cuenta_corriente_2" parent="account.menu_finance_receivables" 

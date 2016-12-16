@@ -49,7 +49,7 @@ class partner_cta_cte(models.Model):
 			if invoice.payment_ids:
 				payments = {}
 				for payment in invoice.payment_ids:
-					vouchers = self.env['account.voucher'].search([('name','=',payment.name)])
+					vouchers = self.env['account.voucher'].search([('name','=',payment.ref)])
 					if vouchers:
 						for voucher in vouchers:
 							receipt_name = voucher.receipt_id.name or 'N/A'
@@ -57,7 +57,7 @@ class partner_cta_cte(models.Model):
 							payments[receipt_name] = payment_amount + payment.credit
 					for key,value in payments.items():
 						vals_payment = {
-							'partner_id': payment.partner_id.id,
+							'partner_id': invoice.partner_id.id,
 							'cliente_proveedor': 'cliente',
 							'tipo_doc': 'pago',
 							'ref': key,
