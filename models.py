@@ -33,8 +33,6 @@ class partner_cta_cte(models.Model):
                 self.search([]).unlink()
                 invoices = self.env['account.invoice'].search([('state','in',['open','paid']),('type','in',['out_refund','out_invoice'])])
 		for invoice in invoices:
-			#if invoice.id == 83:
-			#	import pdb;pdb.set_trace()
 			vals = {
 				'partner_id': invoice.partner_id.id,
 				'cliente_proveedor': 'cliente',
@@ -51,22 +49,22 @@ class partner_cta_cte(models.Model):
 			if invoice.payment_ids:
 				payments = {}
 				for payment in invoice.payment_ids:
-					vouchers = self.env['account.voucher'].search([('number','=',payment.move_id.name])
+					vouchers = self.env['account.voucher'].search([('number','=',payment.move_id.name)])
 					if vouchers:
 						for voucher in vouchers:
 							receipt_name = voucher.receipt_id.name or 'N/A'
 							payment_amount = payments.get(receipt_name,0)
 							payments[receipt_name] = payment_amount + payment.credit
-					for key,value in payments.items():
-						vals_payment = {
-							'partner_id': invoice.partner_id.id,
-							'cliente_proveedor': 'cliente',
-							'tipo_doc': 'pago',
-							'ref': key,
-							'fecha': payment.date,
-							'haber': value			
-							}
-						return_id = self.create(vals_payment)
+				for key,value in payments.items():
+					vals_payment = {
+						'partner_id': invoice.partner_id.id,
+						'cliente_proveedor': 'cliente',
+						'tipo_doc': 'pago',
+						'ref': key,
+						'fecha': payment.date,
+						'haber': value			
+						}
+				return_id = self.create(vals_payment)
 			
 
 	fecha = fields.Date('Fecha')
