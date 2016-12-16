@@ -51,7 +51,7 @@ class partner_cta_cte(models.Model):
 			if invoice.payment_ids:
 				payments = {}
 				for payment in invoice.payment_ids:
-					vouchers = self.env['account.voucher'].search([('number','=',payment.move_id.namemove_id.name)])
+					vouchers = self.env['account.voucher'].search([('number','=',payment.move_id.name])
 					if vouchers:
 						for voucher in vouchers:
 							receipt_name = voucher.receipt_id.name or 'N/A'
