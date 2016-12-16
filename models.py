@@ -33,6 +33,8 @@ class partner_cta_cte(models.Model):
                 self.search([]).unlink()
                 invoices = self.env['account.invoice'].search([('state','in',['open','paid']),('type','in',['out_refund','out_invoice'])])
 		for invoice in invoices:
+			#if invoice.id == 83:
+			#	import pdb;pdb.set_trace()
 			vals = {
 				'partner_id': invoice.partner_id.id,
 				'cliente_proveedor': 'cliente',
@@ -49,7 +51,7 @@ class partner_cta_cte(models.Model):
 			if invoice.payment_ids:
 				payments = {}
 				for payment in invoice.payment_ids:
-					vouchers = self.env['account.voucher'].search([('name','=',payment.ref)])
+					vouchers = self.env['account.voucher'].search([('number','=',payment.move_id.namemove_id.name)])
 					if vouchers:
 						for voucher in vouchers:
 							receipt_name = voucher.receipt_id.name or 'N/A'
