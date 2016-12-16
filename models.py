@@ -46,6 +46,25 @@ class partner_cta_cte(models.Model):
 				vals['tipo_doc'] = 'nc'
 				vals['haber'] = invoice.amount_total
 			return_id = self.create(vals)
+			if invoice.payment_ids:
+				payments = {}
+				for payment in invoice.payment_ids:
+					voucher_lines = self.env['account.voucher.line'].search([('move_line_id','=',payment.id)])
+					if voucher_lines:
+						for voucher_line in voucher_lines:
+							receipt_name = voucher_line.voucher_id.receipt_id.name or 'N/A'
+							payment_amount = payments.get(receipt_name,0)
+							payments[receipt_name] = payment_amount + payment.credit
+					for key,value in payments.items():
+						vals_payment = {
+							'partner_id': payment.partner_id,
+							'cliente_proveedor': 'cliente',
+							'tipo_doc': 'pago',
+							'ref': key,
+							'fecha': payment.date,
+							'haber': value			
+							}
+						return_id = self.create(vals_payment)
 			
 
 	fecha = fields.Date('Fecha')
