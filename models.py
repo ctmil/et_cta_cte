@@ -40,10 +40,10 @@ class partner_cta_cte(models.Model):
 				'fecha': invoice.date_invoice,
 				}
 			if invoice.type == 'out_invoice':
-				vals['factura_nc'] = 'factura'
+				vals['tipo_doc'] = 'factura'
 				vals['debe'] = invoice.amount_total
 			else:
-				vals['factura_nc'] = 'nc'
+				vals['tipo_doc'] = 'nc'
 				vals['haber'] = invoice.amount_total
 			return_id = self.create(vals)
 			
