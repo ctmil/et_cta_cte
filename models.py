@@ -64,7 +64,7 @@ class partner_cta_cte(models.Model):
 						'fecha': payment.date,
 						'haber': value			
 						}
-				return_id = self.create(vals_payment)
+					return_id = self.create(vals_payment)
 			
 
 	fecha = fields.Date('Fecha')
