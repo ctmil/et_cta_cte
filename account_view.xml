@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="invoice_form_view_ctacte" model="ir.ui.view">
+        <!-- record id="invoice_form_view_ctacte" model="ir.ui.view">
             <field name="name">account.invoice.form.ctacte</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
@@ -14,7 +14,7 @@
                         <field name="text_payments" />
 		</field>
             </field>
-        </record>
+        </record -->
 
         <record id="cuenta_corriente_tree" model="ir.ui.view">
             <field name="name">cuenta.corriente.tree</field>
